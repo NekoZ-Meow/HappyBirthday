@@ -18,7 +18,7 @@ module.exports = {
         }]
     },
     output: {
-        path: __dirname + "/src/components/",
+        path: __dirname + "/src/outputs/",
         filename: "index.min.js"
     },
     plugins: debug ? [] : [
