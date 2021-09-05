@@ -70,6 +70,7 @@ const InfoText = styled.p`
     position:absolute;
     color: white;
     bottom:0;
+    margin:auto;
     font-size : ${Cake.getCakeWidth() / 20}px;
     width :100%;
     text-align:center;

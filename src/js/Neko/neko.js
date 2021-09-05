@@ -75,7 +75,7 @@ export default class Neko extends React.Component {
                     };
                 }, 100);
             }
-        }, 5000);
+        }, 3000);
     }
 
     componentWillUnmount() {
