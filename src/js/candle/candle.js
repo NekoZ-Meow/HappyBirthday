@@ -36,9 +36,20 @@ const CandleBase = styled.div`
     height :100%;
 `;
 
+const FireBase = styled.div`
+    position:absolute;
+    top: -${CANDLE_HEIGHT / 10}px;
+    right: -${CANDLE_WIDTH / 2}px; /*上下左右中央に*/
+    width : ${CANDLE_WIDTH * 2}px;
+    height : ${CANDLE_HEIGHT * 0.5}px;
+`;
+
 const Fire = styled.div`
     margin-left: auto;
     margin-right: auto;
+    right: 0;
+    left: 0;
+    top: ${CANDLE_HEIGHT / 10}px;
     position:absolute;
     background: linear-gradient(${FIRE_ORANGE} ,30%,${FIRE_MIDDLE} ,${FIRE_MIDDLE} 70%,${FIRE_ORANGE});
     width : ${CANDLE_WIDTH}px;
@@ -105,7 +116,7 @@ export default class Candle extends React.Component {
                     rightRadius: rightRadius,
                 };
             });
-        }, 80);
+        }, 100);
     }
 
     componentWillUnmount() {
@@ -125,9 +136,13 @@ export default class Candle extends React.Component {
     }
 
     render() {
-        let fire = <Fire onTouchStart={this.dragHandler} onClick={this.dragHandler} onTouchMove={this.dragHandler} onMouseOver={this.dragHandler} style={{
-            borderRadius: `${this.state.topRadius}% ${100 - this.state.topRadius}% 50% 50% / ${this.state.leftRadius}% ${this.state.rightRadius}% ${100 - this.state.rightRadius}% ${100 - this.state.leftRadius}%`
-        }} />
+        let fire = (
+            <FireBase onTouchStart={this.dragHandler} onClick={this.dragHandler} onTouchMove={this.dragHandler} onMouseOver={this.dragHandler}>
+                <Fire style={{
+                    borderRadius: `${this.state.topRadius}% ${100 - this.state.topRadius}% 50% 50% / ${this.state.leftRadius}% ${this.state.rightRadius}% ${100 - this.state.rightRadius}% ${100 - this.state.leftRadius}%`
+                }} />
+            </FireBase>
+        );
         if (!this.state.onFire) {
             fire = <div style={{ pointerEvents: "none" }}></div>
         }

@@ -18,11 +18,13 @@ const CANDLE_NUM = 20;
 const CREAM_NUM = 8;
 const STRAWBERRY_NUM = 8;
 const STRAWBERRY_HALF_NUM = 5;
+// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
 
 const BaseStyle = styled.div`
     position: relative;
     width:100vw;
     height:100vh;
+    overflow:hidden;
 `;
 
 const CakeStyle = styled.div`
@@ -64,6 +66,14 @@ const BlackFilter = styled.div`
     pointer-events: none;
 `;
 
+const InfoText = styled.p`
+    position:absolute;
+    color: white;
+    bottom:0;
+    font-size : ${Cake.getCakeWidth() / 20}px;
+    width :100%;
+    text-align:center;
+`;
 
 
 class Layout extends React.Component {
@@ -169,10 +179,10 @@ class Layout extends React.Component {
         return (
             <BaseStyle>
                 <RadialGradation style={{
-                    background: `radial-gradient(circle closest-side, rgba(255, 150, 10, 0.7), black ${70 * this.state.fires / CANDLE_NUM + 30}%)`,
+                    background: `radial-gradient(circle closest-side, rgba(255, 150, 10, 0.7), black ${70 * this.state.fires / CANDLE_NUM + 50}%)`,
                 }} />
                 <BlackFilter style={{
-                    backgroundColor: `rgba(0,0,0,${this.state.fires == 0 ? 1 : 1 - this.state.fires / CANDLE_NUM * 3})`
+                    backgroundColor: `rgba(0,0,0,${this.state.fires == 0 ? 1 : 1 - this.state.fires / CANDLE_NUM * 8})`
                 }} />
                 <CakeStyle>
                     {creams2}
@@ -184,8 +194,7 @@ class Layout extends React.Component {
                     </Cake>
                     {strawberry_halfs}
                 </CakeStyle>
-                {/* <Title /> */}
-                {/* {candles} */}
+                <InfoText>タップ/クリックで消せます</InfoText>
             </BaseStyle>
         );
     }
