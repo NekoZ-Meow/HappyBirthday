@@ -85,7 +85,14 @@ class Layout extends React.Component {
         this.offFire = this.offFire.bind(this);
     }
 
-    offFire() {
+    async offFire() {
+        if (this.state.fires == 1) {
+            window.setTimeout(() => {
+                this.setState(prev => ({
+                    fires: prev.fires - 1
+                }));
+            }, 1500);
+        }
         this.setState(prev => ({
             fires: prev.fires - 1
         }));
@@ -166,7 +173,7 @@ class Layout extends React.Component {
             stars.push(<Star />)
         }
 
-        if (this.state.fires == 0) {
+        if (this.state.fires == -1) {
             return (
                 <BaseStyle>
                     <Tako />
